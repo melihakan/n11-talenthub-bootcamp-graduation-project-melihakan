@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public interface UserRepository extends MongoRepository<User,String> {
 
     User findByTc(String tc);
-    User findByTcAndBirthday(String tc, LocalDate birthday);
-    User findByBirthday(LocalDate birthday);
+    User findByTcAndBirthday(String tc, String birthday);
+    User findByBirthday(String birthday);
 
 }

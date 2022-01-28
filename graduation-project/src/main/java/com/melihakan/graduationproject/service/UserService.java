@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 
@@ -20,8 +21,8 @@ public interface UserService {
     void delete(String id);
     UserDto update(UserDto userDto);
     User findByTc(String tc);
-    User findByTcAndBirthday(String tc, LocalDate birthday);
-    User findByBirthday(LocalDate birthday);
+    User findByTcAndBirthday(String tc, String birthday);
+    User findByBirthday(String birthday);
 
 
 }

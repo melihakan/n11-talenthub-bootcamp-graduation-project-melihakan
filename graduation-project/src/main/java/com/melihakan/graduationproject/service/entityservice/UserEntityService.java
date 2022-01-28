@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,14 +47,11 @@ public class UserEntityService {
     public User findByTc(String tc){
         return userRepository.findByTc(tc);
     }
-    public User findByTcAndBirthday(String tc, LocalDate birthday){
+    public User findByTcAndBirthday(String tc, String birthday){
         return userRepository.findByTcAndBirthday(tc,birthday);
     }
-    public User findByBirthday(LocalDate birthday){
+    public User findByBirthday(String birthday){
         return userRepository.findByBirthday(birthday);
     }
-
-
-
 
 }

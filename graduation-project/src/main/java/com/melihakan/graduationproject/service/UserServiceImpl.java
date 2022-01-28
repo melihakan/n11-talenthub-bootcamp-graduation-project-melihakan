@@ -4,12 +4,14 @@ import com.melihakan.graduationproject.converter.UserConverter;
 import com.melihakan.graduationproject.dtos.UserDto;
 import com.melihakan.graduationproject.entity.User;
 import com.melihakan.graduationproject.enums.EnumYesNo;
+import com.melihakan.graduationproject.exceptions.BirthdayAndTcDoNotEqualException;
 import com.melihakan.graduationproject.service.entityservice.UserEntityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -47,7 +49,6 @@ public class UserServiceImpl implements UserService{
     public UserDto update(UserDto userDto) {
         User user = UserConverter.INSTANCE.convertUserDtoToUser(userDto);
         user = userLoanScoreCheck(user);//TODO update maaş düşük gelirse kullanıcı silinmeli mi
-        //user = userEntityService.save(user); //TODO update çalışmıyor bak
 
         UserDto userDtos = UserConverter.INSTANCE.convertUserToUserDto(user);
         log.info("Update: User is updated");
@@ -62,24 +63,24 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByTcAndBirthday(String tc, LocalDate birthday) {
+    public User findByTcAndBirthday(String tc, String birthday) {
         User findUserByTc = userEntityService.findByTc(tc);
         //User findUserByBirthday = userEntityService.findByBirthday(birthday);
         User byBirthdayAndTc = userEntityService.findByTcAndBirthday(tc, birthday);
-        //if(findUserByTc.getId().equals(findUserByBirthday.getId()))
         if(byBirthdayAndTc.getTc().equals(findUserByTc.getTc())){
+            log.info("Found: birthday and tc matchup");
             return byBirthdayAndTc;
         }else {
-            throw new RuntimeException("Olmadııı");
-            //System.out.println("olmadı");
+            throw new BirthdayAndTcDoNotEqualException("Birthday and Tc do not equal");
         }
     }
     private void sendSms(User user){
         twilioSmsSenderService.sendSms(user);
     }
     @Override
-    public User findByBirthday(LocalDate birthday) {
-        return null;
+    public User findByBirthday(String birthday) {
+        User byBirthday = userEntityService.findByBirthday(birthday);
+        return byBirthday;
     }
     private User userLoanScoreCheck(User user) {
         double currentLoanScore = user.getSalary() / 10;
@@ -114,7 +115,7 @@ public class UserServiceImpl implements UserService{
             else if (currentLoanScore >= loanScoreMin && currentLoanScore <= loanScoreMax && user.getSalary() >=salaryMax){
                 log.info("Confirm: Your loanScore is valid");
                 user.setLoanResult(EnumYesNo.CONFIRMATION);
-                user.setLoanLimit(user.getSalary()*creditLimitMultiplier/2);//TODO 4 kredi limit çarpanı olarak atama yapılacak
+                user.setLoanLimit(user.getSalary()*creditLimitMultiplier/2);
                 if(!user.getAssurance().isInfinite()){
                     double v = user.getAssurance() * 25 /100;
                     v = v+ user.getLoanLimit();
@@ -134,7 +135,7 @@ public class UserServiceImpl implements UserService{
 
             user = userEntityService.save(user);
             log.info("Save: User is saved");
-            //sendSms(user); //TODO bunu açınca sms atar
+            //sendSms(user); //TODO if this uncommend line, send sms
             log.info("SMS: Sms is sent");
         }
         return user;

@@ -2,13 +2,14 @@ package com.melihakan.graduationproject.controller;
 
 import com.melihakan.graduationproject.dtos.UserDto;
 import com.melihakan.graduationproject.entity.User;
-import com.melihakan.graduationproject.service.UserService;
 import com.melihakan.graduationproject.service.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -38,7 +39,8 @@ public class UserController {
 
     @GetMapping("/check/{tc}/{birthday}")
     public User findByTcAndBirthday(@PathVariable String tc,@PathVariable String birthday){
-        User byBirthdayAndTc = userService.findByTcAndBirthday(tc, LocalDate.parse(birthday));
+        User byBirthdayAndTc = userService.findByTcAndBirthday(tc, birthday);
+//        User byBirthdayAndTc = userService.findByTcAndBirthday(tc, LocalDate.parse(birthday, DateTimeFormatter.ISO_DATE));
         return byBirthdayAndTc;
     }
 
