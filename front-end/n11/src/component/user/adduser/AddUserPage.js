@@ -121,7 +121,7 @@ class AddUserPage extends React.Component {
 
                     </div>
 
-                    <input type="submit" className="btn btn-danger btn-block" value="Kaydet" />
+                    <input type="submit" className="btn btn-danger btn-block" value="Save" />
                 </form>
             </div>
         )
