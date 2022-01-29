@@ -33,9 +33,9 @@ It's a Spring Boot application about user(customer) service. This application in
 2. Import the project to your IDE.
 3. Open the swagger ui on your browser -> http://localhost:8080/swagger-ui.html
 
-### Front-End
+### Front-End    
+![image](https://user-images.githubusercontent.com/46068920/151679794-c7fd4bdc-246e-4848-8a28-b127daf8eac1.png)
 
-## About
 
 
 
