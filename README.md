@@ -1,5 +1,13 @@
 # n11-talenthub-bootcamp-graduation-project
-
+### Built With
+* [Java 11](https://www.oracle.com/tr/java/technologies/javase/jdk11-archive-downloads.html)
+* [IntelliJ Idea](https://www.jetbrains.com/idea)
+* [Spring Data JPA](https://spring.io/projects/spring-data-jpa)
+* [Spring HATEOAS](https://spring.io/projects/spring-hateoas)
+* [Open API](https://springdoc.org)
+* [MapStruct](https://mapstruct.org)
+* [Lombok](https://projectlombok.org)
+## About The Project
 | Method       | EndPoint           | Params  |
 | ------------- |:-------------:| -----:|
 | Post      | /api/v1/users | No Params |
