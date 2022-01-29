@@ -8,7 +8,7 @@
 * [MapStruct](https://mapstruct.org)
 * [Lombok](https://projectlombok.org)
 ## About
-It's a Spring Boot application about user(customer) service. This application includes a simple scenario about User(Customer) entity.
+It's a Spring Boot application about user(customer) service. This application includes a simple scenario about User(Customer) entity. In short, If you want to save a user, you will pass several condition.
 
 | Method       | EndPoint           | Params  |
 | ------------- |:-------------:| -----:|
@@ -22,4 +22,11 @@ All method
 
 Post method example value
 ![image](https://user-images.githubusercontent.com/46068920/151678859-6d847fcc-5db1-412d-a964-07b9c3961d74.png)
+### Installation
+1. Clone the repo
+   ```sh
+   git clone https://github.com/n11-TalentHub-Java-Bootcamp/n11-talenthub-bootcamp-graduation-project-melihakan.git
+   ```
+2. Import the project to your IDE.
+3. Open the swagger ui on your browser -> http://localhost:8080/swagger-ui.html
 
