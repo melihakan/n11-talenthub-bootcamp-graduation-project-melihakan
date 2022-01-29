@@ -7,7 +7,9 @@
 * [Open API](https://springdoc.org)
 * [MapStruct](https://mapstruct.org)
 * [Lombok](https://projectlombok.org)
-## About The Project
+## About
+It's a Spring Boot application about user(customer) service. This application includes a simple scenario about User(Customer) entity.
+
 | Method       | EndPoint           | Params  |
 | ------------- |:-------------:| -----:|
 | Post      | /api/v1/users | No Params |
